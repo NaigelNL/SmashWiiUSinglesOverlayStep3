@@ -5,14 +5,34 @@ Changes from Step 2:
 - The manager solution/application has been added to the project, meaning you don't have to manually edit css files!
 - Player Ports and Player Backgrounds are now seperated.
 
-Anyone is allowed to clone this repository and create their own overlay manager if they feel it lacks some functionality 
+Anyone is allowed to clone this repository and create their own overlay manager if they feel it lacks some functionality that they need for their own tournament streams. I will not accept any pull requests unless it fixes an important bug.
 
+I kept the code as simple and seperated in different functions as possible, to make it easier to understand for beginners in programming, anyone is allowed to clone this repository and refactor the code if they feel the code is too redundant. I will not accept any pull requests unless it fixes an important bug.
 
-I kept the code as simple and seperate in different functions as possible, to make it easier to understand for beginners in programming, anyone is allowed
+**Requirements:**
+- Visual Studio 2017 (or higher) Community (or Professional/Enterprise).
 
+**How to use:**
 
+**How to use in Visual Studio:**
+- Open SmashWiiUOverlayManager.sln using Visual Studio.
 
+![alt img]()
+- Run the application.
 
+**How to use in Open Broadcaster Software (OBS Studio):**
+- Add a new Browser source to your scene.
 
+![alt img]()
+- Check the Local file checkbox and click Browse.
+
+![alt img]()
+- Select gameOverlay.html in the "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\Debug\Files\css" folder. ("\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\Release\Files\css" if you run the application in Release mode)
+- Set the resolution and framerate. (1920 x 1080 at 60 frames per second recommended)
+- Check Refresh browser when scene becomes active checkbox.
+
+![alt img]()
+
+You are now ready to stream with the overlay.
 
 At this step, the overlay doesn't dynamically update whenever the css is altered, you have to move back and forward between the scene with the overlay and another scene to show an updated overlay.
