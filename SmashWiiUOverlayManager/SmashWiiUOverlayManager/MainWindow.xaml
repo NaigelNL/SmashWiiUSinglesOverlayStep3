@@ -125,7 +125,7 @@
 		        Name="Player2PortDropdown" 
 		        ItemsSource="{Binding Path=MainViewModel.PortList, Mode=TwoWay}" 
 		        SelectedItem="{Binding Path=MainViewModel.Player2SelectedPort, Mode=TwoWay}" 
-		        SelectedValuePath="Character" 
+		        SelectedValuePath="Name" 
 		        DisplayMemberPath="Name"
                 Width="144">
             </ComboBox>
