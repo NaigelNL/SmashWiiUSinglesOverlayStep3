@@ -25,7 +25,7 @@ I kept the code as simple and seperated in different functions as possible, to m
 
 ![alt img](https://imgur.com/dtz4LoR.png)
 
-- You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\ {Debug/Release} \Files\css":
+You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\ {Debug/Release} \Files\css":
 - player1Character.css.
 - player1NameText.css.
 - player1Port.css.
