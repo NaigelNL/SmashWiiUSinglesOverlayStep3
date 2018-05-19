@@ -73,7 +73,7 @@
 		        Name="Player1PortDropdown" 
 		        ItemsSource="{Binding Path=MainViewModel.PortList, Mode=TwoWay}" 
 		        SelectedItem="{Binding Path=MainViewModel.Player1SelectedPort, Mode=TwoWay}" 
-		        SelectedValuePath="Character" 
+		        SelectedValuePath="Name" 
 		        DisplayMemberPath="Name"
                 Width="144">
             </ComboBox>
@@ -112,7 +112,7 @@
 		        Name="Player2CharacterDropdown" 
 		        ItemsSource="{Binding Path=MainViewModel.CharacterList, Mode=TwoWay}" 
 		        SelectedItem="{Binding Path=MainViewModel.Player2SelectedCharacter, Mode=TwoWay}" 
-		        SelectedValuePath="Character" 
+		        SelectedValuePath="Name" 
 		        DisplayMemberPath="Name"
                 Width="144">
             </ComboBox>
