@@ -19,9 +19,11 @@ I kept the code as simple and seperated in different functions as possible, to m
 
 
 - Run the application.
+
 ![alt img](https://imgur.com/na4ecHT.png)
 
 - Fill the form on the overlay manager and click Submit.
+
 ![alt img](https://imgur.com/dtz4LoR.png)
 
 - You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\{Debug/Release}\Files\css":
