@@ -20,6 +20,21 @@ I kept the code as simple and seperated in different functions as possible, to m
 ![alt img]()
 - Run the application.
 
+![alt img]()
+- Fill the form on the overlay manager and click Submit.
+
+- You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\{Debug/Release}\Files\css":
+- player1Character.css.
+- player1NameText.css.
+- player1Port.css.
+- player1Score.css.
+- player2Character.css.
+- player2NameText.css.
+- player2Port.css.
+- player2Score.css.
+- roundBoxTest.css.
+- styles.css. (is there by default)
+
 **How to use in Open Broadcaster Software (OBS Studio):**
 - Add a new Browser source to your scene.
 
@@ -27,12 +42,14 @@ I kept the code as simple and seperated in different functions as possible, to m
 - Check the Local file checkbox and click Browse.
 
 ![alt img]()
-- Select gameOverlay.html in the "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\Debug\Files\css" folder. ("\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\Release\Files\css" if you run the application in Release mode)
+- Select gameOverlay.html in the "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\{Debug/Release}\Files\css" folder. 
 - Set the resolution and framerate. (1920 x 1080 at 60 frames per second recommended)
 - Check Refresh browser when scene becomes active checkbox.
 
 ![alt img]()
 
 You are now ready to stream with the overlay.
+
+As the streamed set(s) progress, you can update the overlay by filling in the inputs in the overlay manager.
 
 At this step, the overlay doesn't dynamically update whenever the css is altered, you have to move back and forward between the scene with the overlay and another scene to show an updated overlay.
