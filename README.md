@@ -22,7 +22,7 @@ I kept the code as simple and seperated in different functions as possible, to m
 ![alt img](https://imgur.com/na4ecHT.png)
 
 - Fill the form on the overlay manager and click Submit.
-![alt img]()
+![alt img](https://imgur.com/dtz4LoR.png)
 
 - You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\{Debug/Release}\Files\css":
 - player1Character.css.
@@ -39,15 +39,16 @@ I kept the code as simple and seperated in different functions as possible, to m
 **How to use in Open Broadcaster Software (OBS Studio):**
 - Add a new Browser source to your scene.
 
-![alt img]()
+![alt img](https://imgur.com/em1uLIw.png)
+
 - Check the Local file checkbox and click Browse.
 
-![alt img]()
+![alt img](https://imgur.com/jhgThI0.png)
 - Select gameOverlay.html in the "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\{Debug/Release}\Files\css" folder. 
 - Set the resolution and framerate. (1920 x 1080 at 60 frames per second recommended)
 - Check Refresh browser when scene becomes active checkbox.
 
-![alt img]()
+![alt img](https://imgur.com/RItgGYV.png)
 
 You are now ready to stream with the overlay.
 
