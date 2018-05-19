@@ -13,7 +13,6 @@ I kept the code as simple and seperated in different functions as possible, to m
 - Visual Studio 2017 (or higher) Community (or Professional/Enterprise).
 
 **How to use:**
-
 **How to use in Visual Studio:**
 - Open SmashWiiUOverlayManager.sln using Visual Studio.
 
