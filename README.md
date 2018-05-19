@@ -19,7 +19,7 @@ I kept the code as simple and seperated in different functions as possible, to m
 
 
 - Run the application.
-![alt img]()
+![alt img](https://imgur.com/na4ecHT.png)
 
 - Fill the form on the overlay manager and click Submit.
 ![alt img]()
