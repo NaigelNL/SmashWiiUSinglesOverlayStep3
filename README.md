@@ -17,11 +17,12 @@ I kept the code as simple and seperated in different functions as possible, to m
 **How to use in Visual Studio:**
 - Open SmashWiiUOverlayManager.sln using Visual Studio.
 
-![alt img]()
-- Run the application.
 
+- Run the application.
 ![alt img]()
+
 - Fill the form on the overlay manager and click Submit.
+![alt img]()
 
 - You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\{Debug/Release}\Files\css":
 - player1Character.css.
