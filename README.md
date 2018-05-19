@@ -26,7 +26,7 @@ I kept the code as simple and seperated in different functions as possible, to m
 
 ![alt img](https://imgur.com/dtz4LoR.png)
 
-- You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\ {Debug/Release}\Files\css":
+- You can doublecheck whether the application works now by checking if all of the following files exist in "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\ {Debug/Release} \Files\css":
 - player1Character.css.
 - player1NameText.css.
 - player1Port.css.
@@ -46,7 +46,7 @@ I kept the code as simple and seperated in different functions as possible, to m
 - Check the Local file checkbox and click Browse.
 
 ![alt img](https://imgur.com/jhgThI0.png)
-- Select gameOverlay.html in the "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\{Debug/Release}\Files\css" folder. 
+- Select gameOverlay.html in the "\SmashWiiUOverlayManager\SmashWiiUOverlayManager\bin\ {Debug/Release} \Files\css" folder. 
 - Set the resolution and framerate. (1920 x 1080 at 60 frames per second recommended)
 - Check Refresh browser when scene becomes active checkbox.
 
