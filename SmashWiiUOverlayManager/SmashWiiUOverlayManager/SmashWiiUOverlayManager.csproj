@@ -61,8 +61,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Converters\CharacterItemConvert.cs" />
-    <Compile Include="Converters\PortItemConvert.cs" />
     <Compile Include="FileManagers\CssFileDeleter.cs" />
     <Compile Include="FileManagers\CssFileReader.cs" />
     <Compile Include="FileManagers\CssFileTextReplacer.cs" />
