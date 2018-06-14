@@ -208,6 +208,20 @@ namespace SmashWiiUOverlayManager.ViewModels
             }
         }
 
+        private string _tournament;
+        public string Tournament
+        {
+            get
+            {
+                return _tournament;
+            }
+            set
+            {
+                _tournament = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _round;
         public string Round
         {
