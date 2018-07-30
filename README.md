@@ -3,7 +3,7 @@ Step 3 of a project to create a dynamically editable overlay for Super Smash Bro
 
 Changes from Step 2:
 - The manager solution/application has been added to the project, meaning you don't have to manually edit css files!
-- Player Ports and Player Backgrounds are now seperated.
+- Player Ports and Player Backgrounds are now separated.
 
 Anyone is allowed to clone this repository and create their own overlay manager if they feel it lacks some functionality that they need for their own tournament streams. I will not accept any pull requests unless it fixes an important bug.
 
