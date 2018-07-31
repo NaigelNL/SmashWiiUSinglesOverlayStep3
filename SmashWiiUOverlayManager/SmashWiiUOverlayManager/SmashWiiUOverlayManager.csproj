@@ -316,6 +316,9 @@
     <Content Include="Files\css\styles.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Files\javascript\jQuery.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\roundBoxBackground\roundBoxBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

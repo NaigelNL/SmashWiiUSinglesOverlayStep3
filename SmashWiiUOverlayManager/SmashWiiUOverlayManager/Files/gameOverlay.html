@@ -15,7 +15,8 @@
 		<link rel="stylesheet" type="text/css" href="css/roundBoxText.css">
 		<!--styles-->
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
-		<!--<script type="text/javascript" src="cssrefresh.js"></script>-->
+
+		<script type="text/javascript" src="javascript/jQuery.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -49,3 +50,16 @@
 		</div>
 	</body>
 </html>
+
+<script>
+    function onTimerTick() {
+        var queryString = '?reload=' + new Date().getTime();
+        $('link[rel="stylesheet"]').each(function () {
+            this.href = this.href.replace(/\?.*|$/, queryString);
+        });
+    }
+
+    setInterval(function () {
+        onTimerTick()
+    }, 10000);
+</script>
