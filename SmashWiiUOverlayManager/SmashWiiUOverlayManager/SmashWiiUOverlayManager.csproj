@@ -61,10 +61,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FileManagers\CssFileDeleter.cs" />
-    <Compile Include="FileManagers\CssFileReader.cs" />
-    <Compile Include="FileManagers\CssFileTextReplacer.cs" />
-    <Compile Include="FileManagers\CssFileWriter.cs" />
+    <Compile Include="Models\CssFile.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -1,120 +1,141 @@
-﻿using SmashWiiUOverlayManager.FileManagers;
+﻿using SmashWiiUOverlayManager.Models;
 using SmashWiiUOverlayManager.ViewModels;
-using SmashWiiUOverlayManager.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SmashWiiUOverlayManager
 {
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        private MainViewModel _mainViewModel;
-        public MainViewModel MainViewModel
-        {
-            get
-            {
-                return _mainViewModel;
-            }
-            set
-            {
-                _mainViewModel = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        public MainViewModel MainViewModel { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            InitiateDropDownLists();
+            MainViewModel = new MainViewModel();
+
+            // create new grid
+            Grid newGrid = new Grid();
+            //newGrid.ShowGridLines = true;
+
+            // first main column
+            newGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            List<Control> controlsMainColumn = new List<Control>();
+
+            controlsMainColumn.Add(TitleLabel("Current round"));
+            TextBox currentRoundBox = new TextBox();
+            currentRoundBox.TextChanged += delegate { int parsed = 0; int.TryParse(currentRoundBox.Text, out parsed); MainViewModel.currentRound = parsed; currentRoundBox.Text = parsed.ToString(); };
+            controlsMainColumn.Add(currentRoundBox);
+
+            controlsMainColumn.Add(TitleLabel("Best of"));
+            TextBox bestOfBox = new TextBox();
+            bestOfBox.TextChanged += delegate { int parsed = 0; int.TryParse(bestOfBox.Text, out parsed); MainViewModel.bestOf = parsed; bestOfBox.Text = parsed.ToString(); };
+            controlsMainColumn.Add(bestOfBox);
+
+            controlsMainColumn.Add(TitleLabel(""));// for spacing
+
+            Button submitButton = new Button();
+            submitButton.Content = "Submit";
+            submitButton.Click += delegate { MainViewModel.UpdateInformation(); };
+            controlsMainColumn.Add(submitButton);
+
+            for (int i = 0; i < controlsMainColumn.Count; i++)
+            {
+                Grid.SetColumn(controlsMainColumn[i], 0);
+                Grid.SetRow(controlsMainColumn[i], i);
+                newGrid.Children.Add(controlsMainColumn[i]);
+            }
+
+            int totalRows = controlsMainColumn.Count;// keep track of total amount of rows we need
+
+            newGrid.ColumnDefinitions.Add(new ColumnDefinition());// empty column
+
+            // player columns
+            for (int i = 0; i < MainViewModel.players.Length; i++)
+            {
+                int currentIndex = i;// for use with delegate functions
+                Player p = MainViewModel.players[currentIndex];
+
+                int currentColumn = newGrid.ColumnDefinitions.Count;
+                newGrid.ColumnDefinitions.Add(new ColumnDefinition());
+
+                List<Control> controls = new List<Control>();
+
+                controls.Add(TitleLabel("Player name"));
+                TextBox playerNameBox = new TextBox();
+                playerNameBox.TextChanged += delegate { p.name = playerNameBox.Text; };
+                controls.Add(playerNameBox);
+
+                controls.Add(TitleLabel("Player sponsor"));
+                TextBox playerSponsorBox = new TextBox();
+                playerSponsorBox.TextChanged += delegate { p.sponsor = playerSponsorBox.Text; };
+                controls.Add(playerSponsorBox);
+
+                controls.Add(TitleLabel("Player Twitter"));
+                TextBox playerTwitterBox = new TextBox();
+                controls.Add(playerTwitterBox);
+                playerTwitterBox.TextChanged += delegate { p.twitter = playerTwitterBox.Text; };
+
+                controls.Add(TitleLabel("Player score"));
+                TextBox playerScoreBox = new TextBox();
+                controls.Add(playerScoreBox);
+                playerScoreBox.TextChanged += delegate { int parsed = 0; int.TryParse(playerScoreBox.Text, out parsed); p.score = parsed; playerScoreBox.Text = parsed.ToString(); };
+
+                controls.Add(TitleLabel("Player character"));
+                ComboBox playerCharacterBox = new ComboBox();
+                playerCharacterBox.DisplayMemberPath = "Name";
+                playerCharacterBox.ItemsSource = MainViewModel.CharacterList;
+                playerCharacterBox.SelectedIndex = 0;
+                playerCharacterBox.SelectionChanged += delegate { p.selectedCharacter = playerCharacterBox.SelectedItem as Character; };
+                MainViewModel.players[i].selectedCharacter = playerCharacterBox.SelectedItem as Character;//set default, so it's not null
+                controls.Add(playerCharacterBox);
+
+                controls.Add(TitleLabel("Player port"));
+                ComboBox playerPortBox = new ComboBox();
+                controls.Add(playerPortBox);
+                playerPortBox.DisplayMemberPath = "Name";
+                playerPortBox.ItemsSource = MainViewModel.PortList;
+                playerPortBox.SelectedIndex = 0;
+                playerPortBox.SelectionChanged += delegate { p.selectedPort = playerPortBox.SelectedItem as Port; };
+                MainViewModel.players[i].selectedPort = playerPortBox.SelectedItem as Port;// again avoid null
+                //Button button = new Button();
+                //button.Click += delegate { Console.WriteLine(string.Format("i {0}", currentIndex)); };
+                //controls.Add(button);
+
+                for (int j = 0; j < controls.Count; j++)
+                {
+                    Grid.SetColumn(controls[j], currentColumn);
+                    Grid.SetRow(controls[j], j);
+                    newGrid.Children.Add(controls[j]);
+                }
+
+                if (totalRows < controls.Count)
+                {
+                    totalRows = controls.Count;
+                }
+            }
+
+            newGrid.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // after creating column, check what the totalrows needs to be
+            for (int i = 0; i < totalRows; i++)
+            {
+                var row = new RowDefinition();
+                row.Height = GridLength.Auto;
+                newGrid.RowDefinitions.Add(row);
+            }
+
+            this.Content = newGrid;
             this.DataContext = this;
         }
 
-        public void InitiateDropDownLists()
+        private Label TitleLabel(string content)
         {
-            MainViewModel = new MainViewModel();
-        }
-
-        //EventHandlers
-        private void Submit(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var cssFileReader = new CssFileReader();
-                var cssFileDeleter = new CssFileDeleter();
-                var cssFileTextReplacer = new CssFileTextReplacer();
-                var cssFileWriter = new CssFileWriter();
-
-                //Read
-                var player1CharacterTemplateCss = cssFileReader.ReadPlayer1CharacterTemplateFile();
-                var player2CharacterTemplateCss = cssFileReader.ReadPlayer2CharacterTemplateFile();
-
-                var player1NameTextTemplateCss = cssFileReader.ReadPlayer1NameTextTemplateFile();
-                var player2NameTextTemplateCss = cssFileReader.ReadPlayer2NameTextTemplateFile();
-
-                var player1PortTemplateCss = cssFileReader.ReadPlayer1PortTemplateFile();
-                var player2PortTemplateCss = cssFileReader.ReadPlayer2PortTemplateFile();
-
-                var player1ScoreTextTemplateCss = cssFileReader.ReadPlayer1ScoreTextTemplateFile();
-                var player2ScoreTextTemplateCss = cssFileReader.ReadPlayer2ScoreTextTemplateFile();
-
-                var roundBoxTextTemplateCss = cssFileReader.ReadRoundBoxTextTemplateFile();
-
-                //Replace
-                var player1CharacterCss = cssFileTextReplacer.ReplacePlayer1CharacterTemplateFileText(player1CharacterTemplateCss, MainViewModel.Player1SelectedCharacter.Path);
-                var player2CharacterCss = cssFileTextReplacer.ReplacePlayer1CharacterTemplateFileText(player2CharacterTemplateCss, MainViewModel.Player2SelectedCharacter.Path);
-
-                var player1NameTextCss = cssFileTextReplacer.ReplacePlayer1NameTextTemplateFileText(player1NameTextTemplateCss, MainViewModel.Player1Sponsor, MainViewModel.Player1Name);
-                var player2NameTextCss = cssFileTextReplacer.ReplacePlayer2NameTextTemplateFileText(player2NameTextTemplateCss, MainViewModel.Player2Sponsor, MainViewModel.Player2Name);
-
-                var player1PortCss = cssFileTextReplacer.ReplacePlayer1PortTemplateFileText(player1PortTemplateCss, MainViewModel.Player1SelectedPort.Path);
-                var player2PortCss = cssFileTextReplacer.ReplacePlayer2PortTemplateFileText(player2PortTemplateCss, MainViewModel.Player2SelectedPort.Path);
-
-                var player1ScoreTextCss = cssFileTextReplacer.ReplacePlayer1ScoreTextTemplateFileText(player1ScoreTextTemplateCss, MainViewModel.Player1Score);
-                var player2ScoreTextCss = cssFileTextReplacer.ReplacePlayer2ScoreTextTemplateFileText(player2ScoreTextTemplateCss, MainViewModel.Player2Score);
-
-                var roundBoxTextCss = cssFileTextReplacer.ReplaceRoundBoxTextTemplateFileText(roundBoxTextTemplateCss, MainViewModel.Round);
-
-                //Write
-                cssFileWriter.WritePlayer1CharacterFile(player1CharacterCss);
-                cssFileWriter.WritePlayer2CharacterFile(player2CharacterCss);
-
-                cssFileWriter.WritePlayer1NameTextFile(player1NameTextCss);
-                cssFileWriter.WritePlayer2NameTextFile(player2NameTextCss);
-
-                cssFileWriter.WritePlayer1PortFile(player1PortCss);
-                cssFileWriter.WritePlayer2PortFile(player2PortCss);
-
-                cssFileWriter.WritePlayer1ScoreTextFile(player1ScoreTextCss);
-                cssFileWriter.WritePlayer2ScoreTextFile(player2ScoreTextCss);
-
-                cssFileWriter.WriteRoundBoxTextFile(roundBoxTextCss);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            var l = new Label();
+            l.FontWeight = FontWeights.Bold;
+            l.Content = content;
+            return l;
         }
     }
 }

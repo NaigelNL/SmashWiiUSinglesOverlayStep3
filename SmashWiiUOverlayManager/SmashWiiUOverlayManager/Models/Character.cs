@@ -1,135 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace SmashWiiUOverlayManager.Models
 {
-    public class Character : INotifyPropertyChanged
+    public class Character
     {
-        private int _id;
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Name { get; private set; }
+        public string Path { get; private set; }
 
-        private string _name;
-        public string Name
+        public Character(string name, string fileName)
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _path;
-        public string Path
-        {
-            get
-            {
-                return _path;
-            }
-            set
-            {
-                _path = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
-        public Character(int id, string name, string path)
-        {
-            Id = id;
             Name = name;
-            Path = path;
+            Path = string.Format(@"..\\characterIcons\\{0}.png", fileName);
         }
 
-        public static ObservableCollection<Character> InitiateSmashWiiUCharacterList()
+        public static ObservableCollection<Character> InitiateCharacterList()
         {
             return new ObservableCollection<Character>
             {
-                new Character(0, "Bayonetta", @"..\\characterIcons\\bayonetta.png"),
-                new Character(1, "Bowser", @"..\\characterIcons\\Bowser.png"),
-                new Character(2, "Bowser. Jr", @"..\\characterIcons\\bowserjr.png"),
-                new Character(3, "Captain Falcon", @"..\\characterIcons\\captainfalcon.png"),
-                new Character(4, "Charizard", @"..\\characterIcons\\charizard.png"),
-                new Character(5, "Cloud", @"..\\characterIcons\\cloud.png"),
-                new Character(6, "Corrin", @"..\\characterIcons\\corrin.png"),
-                new Character(7, "Dark Pit", @"..\\characterIcons\\darkpit.png"),
-                new Character(8, "Diddy Kong", @"..\\characterIcons\\diddykong.png"),
-                new Character(9, "Donkey Kong", @"..\\characterIcons\\donkeykong.png"),
-                new Character(10, "Dr. Mario", @"..\\characterIcons\\drmario.png"),
-                new Character(11, "Duck Hunt", @"..\\characterIcons\\duckhunt.png"),
-                new Character(12, "Falco", @"..\\characterIcons\\falco.png"),
-                new Character(13, "Fox", @"..\\characterIcons\\fox.png"),
-                new Character(14, "Ganondorf", @"..\\characterIcons\\ganondorf.png"),
-                new Character(15, "Greninja", @"..\\characterIcons\\greninja.png"),
-                new Character(16, "Ike", @"..\\characterIcons\\ike.png"),
-                new Character(17, "Jigglypuff", @"..\\characterIcons\\jigglypuff.png"),
-                new Character(18, "King Dedede", @"..\\characterIcons\\kingdedede.png"),
-                new Character(19, "Kirby", @"..\\characterIcons\\kirby.png"),
-                new Character(20, "Link", @"..\\characterIcons\\link.png"),
-                new Character(21, "Little Mac", @"..\\characterIcons\\littlemac.png"),
-                new Character(22, "Lucario", @"..\\characterIcons\\lucario.png"),
-                new Character(23, "Lucas", @"..\\characterIcons\\lucas.png"),
-                new Character(24, "Lucina", @"..\\characterIcons\\lucina.png"),
-                new Character(25, "Luigi", @"..\\characterIcons\\luigi.png"),
-                new Character(26, "Mario", @"..\\characterIcons\\mario.png"),
-                new Character(27, "Marth", @"..\\characterIcons\\marth.png"),
-                new Character(28, "Mega Man", @"..\\characterIcons\\megaman.png"),
-                new Character(29, "Meta Knight", @"..\\characterIcons\\metaknight.png"),
-                new Character(30, "Mewtwo", @"..\\characterIcons\\mewtwo.png"),
-                new Character(31, "Mii Brawler", @"..\\characterIcons\\miigunner.png"),
-                new Character(32, "Mii Swordfighter", @"..\\characterIcons\\miiswordfighter.png"),
-                new Character(33, "Mr. Game & Watch", @"..\\characterIcons\\mrgamewatch.png"),
-                new Character(34, "Ness", @"..\\characterIcons\\ness.png"),
-                new Character(35, "Olimar", @"..\\characterIcons\\olimar.png"),
-                new Character(36, "Pac-Man", @"..\\characterIcons\\pacman.png"),
-                new Character(37, "Palutena", @"..\\characterIcons\\palutena.png"),
-                new Character(38, "Peach", @"..\\characterIcons\\peach.png"),
-                new Character(39, "Pikachu", @"..\\characterIcons\\pikachu.png"),
-                new Character(40, "Pit", @"..\\characterIcons\\pit.png"),
-                new Character(41, "Random", @"..\\characterIcons\\random.png"),
-                new Character(42, "R.O.B", @"..\\characterIcons\\rob.png"),
-                new Character(43, "Robin", @"..\\characterIcons\\robin.png"),
-                new Character(44, "Rosalina & Luma", @"..\\characterIcons\\rosalina.png"),
-                new Character(45, "Roy", @"..\\characterIcons\\roy.png"),
-                new Character(46, "Ryu", @"..\\characterIcons\\ryu.png"),
-                new Character(47, "Samus", @"..\\characterIcons\\samus.png"),
-                new Character(48, "Sheik", @"..\\characterIcons\\sheik.png"),
-                new Character(49, "Shulk", @"..\\characterIcons\\shulk.png"),
-                new Character(50, "Sonic", @"..\\characterIcons\\sonic.png"),
-                new Character(51, "Toon Link", @"..\\characterIcons\\toonlink.png"),
-                new Character(52, "Villager", @"..\\characterIcons\\villager.png"),
-                new Character(53, "Wario", @"..\\characterIcons\\wario.png"),
-                new Character(54, "Wii Fit Trainer", @"..\\characterIcons\\wiifittrainer.png"),
-                new Character(55, "Yoshi", @"..\\characterIcons\\yoshi.png"),
-                new Character(56, "Zelda", @"..\\characterIcons\\zelda.png"),
-                new Character(57, "Zero Suit Samus", @"..\\characterIcons\\zerosuitsamus.png")
+                new Character("Bayonetta", "bayonetta"),
+                new Character("Bowser", "bowser"),
+                new Character("Bowser. Jr", "bowserjr"),
+                new Character("Captain Falcon", "captainfalcon"),
+                new Character("Charizard", "charizard"),
+                new Character("Cloud", "cloud"),
+                new Character("Corrin", "corrin"),
+                new Character("Dark Pit", "darkpit"),
+                new Character("Diddy Kong", "diddykong"),
+                new Character("Donkey Kong", "donkeykong"),
+                new Character("Dr. Mario", "drmario"),
+                new Character("Duck Hunt", "duckhunt"),
+                new Character("Falco", "falco"),
+                new Character("Fox", "fox"),
+                new Character("Ganondorf", "ganondorf"),
+                new Character("Greninja", "greninja"),
+                new Character("Ike", "ike"),
+                new Character("Jigglypuff", "jigglypuff"),
+                new Character("King Dedede", "kingdedede"),
+                new Character("Kirby", "kirby"),
+                new Character("Link", "link"),
+                new Character("Little Mac", "littlemac"),
+                new Character("Lucario", "lucario"),
+                new Character("Lucas", "lucas"),
+                new Character("Lucina", "lucina"),
+                new Character("Luigi", "luigi"),
+                new Character("Mario", "mario"),
+                new Character("Marth", "marth"),
+                new Character("Mega Man", "megaman"),
+                new Character("Meta Knight", "metaknight"),
+                new Character("Mewtwo", "mewtwo"),
+                new Character("Mii Brawler", "miigunner"),
+                new Character("Mii Swordfighter", "miiswordfighter"),
+                new Character("Mr. Game & Watch", "mrgamewatch"),
+                new Character("Ness", "ness"),
+                new Character("Olimar", "olimar"),
+                new Character("Pac-Man", "pacman"),
+                new Character("Palutena", "palutena"),
+                new Character("Peach", "peach"),
+                new Character("Pikachu", "pikachu"),
+                new Character("Pit", "pit"),
+                new Character("Random", "random"),
+                new Character("R.O.B", "rob"),
+                new Character("Robin", "robin"),
+                new Character("Rosalina & Luma", "rosalina"),
+                new Character("Roy", "roy"),
+                new Character("Ryu", "ryu"),
+                new Character("Samus", "samus"),
+                new Character("Sheik", "sheik"),
+                new Character("Shulk", "shulk"),
+                new Character("Sonic", "sonic"),
+                new Character("Toon Link", "toonlink"),
+                new Character("Villager", "villager"),
+                new Character("Wario", "wario"),
+                new Character("Wii Fit Trainer", "wiifittrainer"),
+                new Character("Yoshi", "yoshi"),
+                new Character("Zelda", "zelda"),
+                new Character("Zero Suit Samus", "zerosuitsamus")
             };
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
